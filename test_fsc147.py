@@ -37,10 +37,12 @@ sq_errs = []
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
+  caption = ' '.join(class_dict[img_name])
+  print(caption)
   boxes, logits, phrases = predict(
       model=model,
       image=image,
-      caption=class_dict[img_name],
+      caption=caption,
       box_threshold=BOX_THRESHOLD,
       text_threshold=TEXT_THRESHOLD
   )
