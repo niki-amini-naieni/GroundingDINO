@@ -11,7 +11,7 @@ DATA_SPLIT_PATH = "../Train_Test_Val_FSC_147.json"
 IMG_DIR = "../images_384_VarV2"
 CLASS_NAME_PATH = "../ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "../annotation_FSC147_384.json"
-FSC147_D_ANNO_FILE = "../CounTX-plus-plus/FSC-147-D.json"
+FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
 DATA_SPLIT = "test"
 descriptions = "fsc147-d"
 
@@ -32,7 +32,7 @@ if descriptions == "fsc147":
       for line in f:
           key = line.split()[0]
           val = line.split()[1:]
-          class_dict[key] = val
+          class_dict[key] = ' '.join(val)
 else:
    for img_name in image_names:
       class_dict[img_name] = fsc147_d_annotations[img_name]["text_description"]
@@ -47,7 +47,7 @@ sq_errs = []
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
-  caption = ' '.join(class_dict[img_name])
+  caption = class_dict[img_name]
   print(caption)
   boxes, logits, phrases = predict(
       model=model,
