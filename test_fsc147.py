@@ -42,8 +42,8 @@ else:
       class_dict[img_name] = fsc147_d_annotations[img_name]["text_description"]
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
-BOX_THRESHOLD = 0.35
-TEXT_THRESHOLD = 0.25
+BOX_THRESHOLD = 0.25
+TEXT_THRESHOLD = 0.35
 
 abs_errs = []
 sq_errs = []
