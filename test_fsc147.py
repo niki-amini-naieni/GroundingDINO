@@ -13,7 +13,7 @@ IMG_DIR = "../images_384_VarV2"
 CLASS_NAME_PATH = "../ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "../annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
-DATA_SPLIT = "test"
+DATA_SPLIT = "val"
 descriptions = "fsc147"
 
 with open(DATA_SPLIT_PATH) as f:
