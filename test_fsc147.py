@@ -42,14 +42,16 @@ else:
       class_dict[img_name] = fsc147_d_annotations[img_name]["text_description"]
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
-BOX_THRESHOLD = 0.25
-TEXT_THRESHOLD = 0.35
+BOX_THRESHOLD = 0.35
+TEXT_THRESHOLD = 0.25
 
 abs_errs = []
 sq_errs = []
 
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
+  print(img_name)
+  print(image.shape)
   gt = len(fsc147_annotations[img_name]["points"])
   caption = class_dict[img_name]
   print(caption)
