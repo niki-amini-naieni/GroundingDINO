@@ -70,9 +70,15 @@ def predict(
     prediction_logits = outputs["pred_logits"].cpu().sigmoid()[0]  # prediction_logits.shape = (nq, 256)
     prediction_boxes = outputs["pred_boxes"].cpu()[0]  # prediction_boxes.shape = (nq, 4)
 
+    print("prediction_logits shape: " + str(prediction_logits.shape))
+    print("prediction_boxes shape: " + str(prediction_boxes.shape))
+
     mask = prediction_logits.max(dim=1)[0] > box_threshold
+    print("mask shape: " + str(mask.shape))
     logits = prediction_logits[mask]  # logits.shape = (n, 256)
+    print("logits shape: " + str(logits.shape))
     boxes = prediction_boxes[mask]  # boxes.shape = (n, 4)
+    print("boxes shape: " + str(boxes.shape))
 
     tokenizer = model.tokenizer
     tokenized = tokenizer(caption)
@@ -94,6 +100,7 @@ def predict(
             in logits
         ]
 
+    print(phrases)
     return boxes, logits.max(dim=1)[0], phrases
 
 
