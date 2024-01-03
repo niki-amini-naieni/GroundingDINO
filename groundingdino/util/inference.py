@@ -60,6 +60,7 @@ def predict(
         remove_combined: bool = False
 ) -> Tuple[torch.Tensor, torch.Tensor, List[str]]:
     caption = preprocess_caption(caption=caption)
+    print("Preprocessed Caption: " + caption)
 
     model = model.to(device)
     image = image.to(device)
@@ -70,20 +71,12 @@ def predict(
     prediction_logits = outputs["pred_logits"].cpu().sigmoid()[0]  # prediction_logits.shape = (nq, 256)
     prediction_boxes = outputs["pred_boxes"].cpu()[0]  # prediction_boxes.shape = (nq, 4)
 
-    print("prediction_logits shape: " + str(prediction_logits.shape))
-    print("prediction_boxes shape: " + str(prediction_boxes.shape))
-
     mask = prediction_logits.max(dim=1)[0] > box_threshold
-    print("mask shape: " + str(mask.shape))
     logits = prediction_logits[mask]  # logits.shape = (n, 256)
-    print("logits shape: " + str(logits.shape))
     boxes = prediction_boxes[mask]  # boxes.shape = (n, 4)
-    print("boxes shape: " + str(boxes.shape))
 
     tokenizer = model.tokenizer
     tokenized = tokenizer(caption)
-    #print("tokenized shape: " + str(tokenized.shape))
-    print(tokenized)
     
     if remove_combined:
         sep_idx = [i for i in range(len(tokenized['input_ids'])) if tokenized['input_ids'][i] in [101, 102, 1012]]
@@ -102,8 +95,6 @@ def predict(
             in logits
         ]
 
-    print(logits)
-    print(phrases)
     return boxes, logits.max(dim=1)[0], phrases
 
 

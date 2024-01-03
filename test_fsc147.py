@@ -14,7 +14,7 @@ CLASS_NAME_PATH = "../ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "../annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
 DATA_SPLIT = "val"
-descriptions = "fsc147"
+descriptions = "fsc147d"
 
 with open(DATA_SPLIT_PATH) as f:
     data_split = json.load(f)
@@ -39,7 +39,7 @@ if descriptions == "fsc147":
           class_dict[key] = ' '.join(val)
 else:
    for img_name in image_names:
-      class_dict[img_name] = fsc147_d_annotations[img_name]["text_description"]
+      class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"])
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
 BOX_THRESHOLD = 0.25
@@ -52,7 +52,7 @@ for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
   caption = class_dict[img_name] 
-  print(caption)
+  print("Caption: " + caption)
   boxes, logits, phrases = predict(
       model=model,
       image=image,
