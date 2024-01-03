@@ -100,6 +100,7 @@ def predict(
             in logits
         ]
 
+    print(logits)
     print(phrases)
     return boxes, logits.max(dim=1)[0], phrases
 
