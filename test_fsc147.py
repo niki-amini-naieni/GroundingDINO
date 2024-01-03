@@ -6,7 +6,7 @@ import json
 import numpy as np
 from pluralizer import Pluralizer
 
-CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinT_OGC.py"
+CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinB_cfg.py"
 WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
 DATA_SPLIT_PATH = "../Train_Test_Val_FSC_147.json"
 IMG_DIR = "../images_384_VarV2"
@@ -42,18 +42,16 @@ else:
       class_dict[img_name] = fsc147_d_annotations[img_name]["text_description"]
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
-BOX_THRESHOLD = 0.35
-TEXT_THRESHOLD = 0.25
+BOX_THRESHOLD = 0.25
+TEXT_THRESHOLD = 0.35
 
 abs_errs = []
 sq_errs = []
 
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
-  print(img_name)
-  print(image.shape)
   gt = len(fsc147_annotations[img_name]["points"])
-  caption = class_dict[img_name] + ". dogs. trees. berries"
+  caption = class_dict[img_name] 
   print(caption)
   boxes, logits, phrases = predict(
       model=model,
