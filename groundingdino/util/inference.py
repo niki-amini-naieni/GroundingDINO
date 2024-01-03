@@ -82,7 +82,7 @@ def predict(
 
     tokenizer = model.tokenizer
     tokenized = tokenizer(caption)
-    print("tokenized shape: " + str(tokenized.shape))
+    #print("tokenized shape: " + str(tokenized.shape))
     print(tokenized)
     
     if remove_combined:
