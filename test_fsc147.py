@@ -53,7 +53,7 @@ for img_name in image_names:
   print(img_name)
   print(image.shape)
   gt = len(fsc147_annotations[img_name]["points"])
-  caption = class_dict[img_name]
+  caption = class_dict[img_name] + ". dogs. trees. berries"
   print(caption)
   boxes, logits, phrases = predict(
       model=model,
