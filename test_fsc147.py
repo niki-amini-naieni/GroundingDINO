@@ -42,8 +42,8 @@ else:
       class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"])
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
-BOX_THRESHOLD = 0.25
-TEXT_THRESHOLD = 0.35
+BOX_THRESHOLD = 0.35
+TEXT_THRESHOLD = 0.25
 
 abs_errs = []
 sq_errs = []
@@ -61,5 +61,17 @@ for img_name in image_names:
       text_threshold=TEXT_THRESHOLD
   )
 
-  annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
-  np.save(img_name[:-4] + ".npy", annotated_frame)
+  pred = len(phrases)
+
+  print("Pred: " + str(pred))
+  print("GT: " + str(gt))
+  abs_err = np.abs(pred - gt)
+  print("Abs Err: " + str(abs_err))
+  abs_errs.append(abs_err)
+  sq_errs.append(abs_err ** 2)
+
+abs_errs = np.array(abs_errs)
+sq_errs = np.array(sq_errs)
+
+print("MAE: " + str(np.mean(abs_errs)))
+print("RMSE: " + str(np.sqrt(np.mean(sq_errs))))
