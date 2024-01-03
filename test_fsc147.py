@@ -6,8 +6,8 @@ import json
 import numpy as np
 from pluralizer import Pluralizer
 
-CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinB_cfg.py"
-WEIGHTS_PATH = "../weights/groundingdino_swinb_cogcoor.pth"
+CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinT_OGC.py"
+WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
 DATA_SPLIT_PATH = "../Train_Test_Val_FSC_147.json"
 IMG_DIR = "../images_384_VarV2"
 CLASS_NAME_PATH = "../ImageClasses_FSC147.txt"
@@ -61,7 +61,7 @@ for img_name in image_names:
       text_threshold=TEXT_THRESHOLD
   )
 
-  filtered_phrases = list(filter(lambda txt: txt == caption, phrases))
+  filtered_phrases = list(filter(lambda txt: len(txt) > 0, phrases))
   print("original phrases:")
   print(phrases)
   print("filtered phrases:")
