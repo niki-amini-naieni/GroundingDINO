@@ -61,21 +61,5 @@ for img_name in image_names:
       text_threshold=TEXT_THRESHOLD
   )
 
-  filtered_phrases = list(filter(lambda txt: len(txt) > 0, phrases))
-  print("original phrases:")
-  print(phrases)
-  print("filtered phrases:")
-  print(filtered_phrases)
-  pred = len(filtered_phrases)
-  print("Pred: " + str(pred))
-  print("GT: " + str(gt))
-  abs_err = np.abs(pred - gt)
-  print("Abs Err: " + str(abs_err))
-  abs_errs.append(abs_err)
-  sq_errs.append(abs_err ** 2)
-
-abs_errs = np.array(abs_errs)
-sq_errs = np.array(sq_errs)
-
-print("MAE: " + str(np.mean(abs_errs)))
-print("RMSE: " + str(np.sqrt(np.mean(sq_errs))))
+  annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
+  print(type(annotated_frame))
