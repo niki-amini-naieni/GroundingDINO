@@ -61,7 +61,7 @@ for img_name in image_names:
       text_threshold=TEXT_THRESHOLD
   )
 
-  filtered_phrases = filter(lambda txt: txt == caption, phrases)
+  filtered_phrases = list(filter(lambda txt: txt == caption, phrases))
   print("original phrases:")
   print(phrases)
   print("filtered phrases:")
