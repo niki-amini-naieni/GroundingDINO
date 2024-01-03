@@ -7,7 +7,7 @@ import numpy as np
 from pluralizer import Pluralizer
 
 CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinB_cfg.py"
-WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
+WEIGHTS_PATH = "../weights/groundingdino_swinb_cogcoor.pth"
 DATA_SPLIT_PATH = "../Train_Test_Val_FSC_147.json"
 IMG_DIR = "../images_384_VarV2"
 CLASS_NAME_PATH = "../ImageClasses_FSC147.txt"
