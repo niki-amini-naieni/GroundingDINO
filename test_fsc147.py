@@ -62,4 +62,4 @@ for img_name in image_names:
   )
 
   annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
-  print(type(annotated_frame))
+  np.save(img_name[:-4] + ".npy", annotated_frame)
