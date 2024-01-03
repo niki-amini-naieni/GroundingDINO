@@ -60,7 +60,13 @@ for img_name in image_names:
       box_threshold=BOX_THRESHOLD,
       text_threshold=TEXT_THRESHOLD
   )
-  pred = boxes.shape[0]
+
+  filtered_phrases = filter(lambda txt: txt == caption, phrases)
+  print("original phrases:")
+  print(phrases)
+  print("filtered phrases:")
+  print(filtered_phrases)
+  pred = len(filtered_phrases)
   print("Pred: " + str(pred))
   print("GT: " + str(gt))
   abs_err = np.abs(pred - gt)
