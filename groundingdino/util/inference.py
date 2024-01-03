@@ -82,6 +82,8 @@ def predict(
 
     tokenizer = model.tokenizer
     tokenized = tokenizer(caption)
+    print("tokenized shape: " + str(tokenized.shape))
+    print(tokenized)
     
     if remove_combined:
         sep_idx = [i for i in range(len(tokenized['input_ids'])) if tokenized['input_ids'][i] in [101, 102, 1012]]
