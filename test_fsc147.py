@@ -8,13 +8,13 @@ from pluralizer import Pluralizer
 
 CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinT_OGC.py"
 WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
-DATA_SPLIT_PATH = "../Train_Test_Val_FSC_147.json"
+DATA_SPLIT_PATH = "/scratch/shared/beegfs/FSC-147/Train_Test_Val_FSC_147.json"
 IMG_DIR = "../images_384_VarV2"
 CLASS_NAME_PATH = "../ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "../annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
 DATA_SPLIT = "val"
-descriptions = "fsc147d"
+descriptions = "fsc147"
 
 with open(DATA_SPLIT_PATH) as f:
     data_split = json.load(f)
@@ -61,7 +61,7 @@ for img_name in image_names:
       text_threshold=TEXT_THRESHOLD
   )
 
-  pred = len(phrases)
+  pred = len(boxes)
 
   print("Pred: " + str(pred))
   print("GT: " + str(gt))
