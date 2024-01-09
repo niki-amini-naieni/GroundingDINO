@@ -14,7 +14,7 @@ CLASS_NAME_PATH = "/scratch/shared/beegfs/nikian/FSC-147/ImageClasses_FSC147.txt
 FSC147_ANNO_FILE = "/scratch/shared/beegfs/nikian/FSC-147/annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
 DATA_SPLIT = "test"
-descriptions = "fsc147"
+descriptions = "fsc147d"
 
 with open(DATA_SPLIT_PATH) as f:
     data_split = json.load(f)
@@ -39,7 +39,7 @@ if descriptions == "fsc147":
           class_dict[key] = ' '.join(val)
 else:
    for img_name in image_names:
-      class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"])
+      class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"][4:])
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
 BOX_THRESHOLD = 0.35
