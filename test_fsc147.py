@@ -47,7 +47,7 @@ TEXT_THRESHOLD = 0.25
 
 abs_errs = []
 sq_errs = []
-im_sink = sv.utils.image.ImageSink(target_dir_path="/uses/nikian/GroundingDINO")
+im_sink = sv.utils.image.ImageSink(target_dir_path="/users/nikian/GroundingDINO")
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
