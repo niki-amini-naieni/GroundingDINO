@@ -47,7 +47,7 @@ TEXT_THRESHOLD = 0.25
 
 abs_errs = []
 sq_errs = []
-
+im_sink = sv.utils.image.ImageSink(target_dir_path="/uses/nikian/GroundingDINO")
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
@@ -69,6 +69,8 @@ for img_name in image_names:
   print("Abs Err: " + str(abs_err))
   abs_errs.append(abs_err)
   sq_errs.append(abs_err ** 2)
+  annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
+  im_sink.save_image(annotated_frame, img_name)
 
 abs_errs = np.array(abs_errs)
 sq_errs = np.array(sq_errs)
