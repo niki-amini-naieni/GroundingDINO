@@ -72,6 +72,7 @@ for img_name in image_names:
 
 abs_errs = np.array(abs_errs)
 sq_errs = np.array(sq_errs)
-
+print(abs_errs)
+print(sq_errs)
 print("MAE: " + str(np.mean(abs_errs)))
 print("RMSE: " + str(np.sqrt(np.mean(sq_errs))))
