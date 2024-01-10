@@ -239,6 +239,8 @@ class GroundingDINO(nn.Module):
            - "aux_outputs": Optional, only returned when auxilary losses are activated. It is a list of
                             dictionnaries containing the two above keys for each decoder layer.
         """
+
+        # TEXT BACKBONE
         if targets is None:
             captions = kw["captions"]
         else:
@@ -300,6 +302,7 @@ class GroundingDINO(nn.Module):
             "text_self_attention_masks": text_self_attention_masks,  # bs, 195,195
         }
 
+        # IMAGE BACKBONE
         # import ipdb; ipdb.set_trace()
         if isinstance(samples, (list, torch.Tensor)):
             samples = nested_tensor_from_tensor_list(samples)
@@ -327,11 +330,13 @@ class GroundingDINO(nn.Module):
                 masks.append(mask)
                 self.poss.append(pos_l)
 
+        # FEATURE ENHANCER
         input_query_bbox = input_query_label = attn_mask = dn_meta = None
         hs, reference, hs_enc, ref_enc, init_box_proposal = self.transformer(
             srcs, masks, input_query_bbox, self.poss, input_query_label, attn_mask, text_dict
         )
 
+        # LANGUAGE-GUIDED QUERY SELECTION & DECODER
         # deformable-detr-like anchor update
         outputs_coord_list = []
         for dec_lid, (layer_ref_sig, layer_bbox_embed, layer_hs) in enumerate(
