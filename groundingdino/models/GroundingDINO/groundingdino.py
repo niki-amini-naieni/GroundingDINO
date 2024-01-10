@@ -240,6 +240,13 @@ class GroundingDINO(nn.Module):
                             dictionnaries containing the two above keys for each decoder layer.
         """
 
+        # Helpful printing
+        print("Image Backbone:")
+        print(self.backbone)
+        print("Text Backbone:")
+        print(self.bert)
+        print("Feature Enhancer:")
+        print(self.transformer)
         # TEXT BACKBONE
         if targets is None:
             captions = kw["captions"]
