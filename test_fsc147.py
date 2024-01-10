@@ -70,7 +70,8 @@ for img_name in image_names:
   print("Abs Err: " + str(abs_err))
   abs_errs.append(abs_err)
   sq_errs.append(abs_err ** 2)
-  annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
+  print(phrases)
+  #annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
   #im_sink.save_image(annotated_frame, img_name)
 
 abs_errs = np.array(abs_errs)
