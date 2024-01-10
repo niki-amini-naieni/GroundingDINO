@@ -248,7 +248,7 @@ class GroundingDINO(nn.Module):
         tokenized = self.tokenizer(captions, padding="longest", return_tensors="pt").to(
             samples.device
         )
-        print("tokenized.shape: " + str(tokenized.shape))
+        print("tokenized: " + str(tokenized))
         (
             text_self_attention_masks,
             position_ids,
