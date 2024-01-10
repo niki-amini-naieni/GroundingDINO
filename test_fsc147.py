@@ -13,7 +13,7 @@ IMG_DIR = "/scratch/shared/beegfs/nikian/FSC-147/images_384_VarV2"
 CLASS_NAME_PATH = "/scratch/shared/beegfs/nikian/FSC-147/ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "/scratch/shared/beegfs/nikian/FSC-147/annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
-DATA_SPLIT = "val"
+DATA_SPLIT = "test"
 descriptions = "fsc147"
 
 with open(DATA_SPLIT_PATH) as f:

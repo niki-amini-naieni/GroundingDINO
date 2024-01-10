@@ -277,9 +277,10 @@ class GroundingDINO(nn.Module):
             print("tokenized_for_encoder: " + str(tokenized_for_encoder))
 
         bert_output = self.bert(**tokenized_for_encoder)  # bs, 195, 768
-        print("bert_output: " + str(bert_output))
+        print("bert_output['last_hidden_state'].shape: " + str(bert_output['last_hidden_state'].shape))
 
         encoded_text = self.feat_map(bert_output["last_hidden_state"])  # bs, 195, d_model
+        print("encoded_text.shape: " + str(encoded_text.shape))
         text_token_mask = tokenized.attention_mask.bool()  # bs, 195
         # text_token_mask: True for nomask, False for mask
         # text_self_attention_masks: True for nomask, False for mask
