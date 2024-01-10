@@ -13,7 +13,7 @@ IMG_DIR = "/scratch/shared/beegfs/nikian/FSC-147/images_384_VarV2"
 CLASS_NAME_PATH = "/scratch/shared/beegfs/nikian/FSC-147/ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "/scratch/shared/beegfs/nikian/FSC-147/annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
-DATA_SPLIT = "test"
+DATA_SPLIT = "val"
 descriptions = "fsc147"
 
 with open(DATA_SPLIT_PATH) as f:
@@ -71,7 +71,7 @@ for img_name in image_names:
   abs_errs.append(abs_err)
   sq_errs.append(abs_err ** 2)
   annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
-  im_sink.save_image(annotated_frame, img_name)
+  #im_sink.save_image(annotated_frame, img_name)
 
 abs_errs = np.array(abs_errs)
 sq_errs = np.array(sq_errs)
