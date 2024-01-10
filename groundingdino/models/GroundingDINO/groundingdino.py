@@ -274,8 +274,10 @@ class GroundingDINO(nn.Module):
         else:
             # import ipdb; ipdb.set_trace()
             tokenized_for_encoder = tokenized
+            print("tokenized_for_encoder: " + str(tokenized_for_encoder))
 
         bert_output = self.bert(**tokenized_for_encoder)  # bs, 195, 768
+        print("bert_output: " + str(bert_output))
 
         encoded_text = self.feat_map(bert_output["last_hidden_state"])  # bs, 195, d_model
         text_token_mask = tokenized.attention_mask.bool()  # bs, 195
