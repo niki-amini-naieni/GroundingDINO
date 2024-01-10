@@ -43,7 +43,7 @@ else:
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
 BOX_THRESHOLD = 0.25
-TEXT_THRESHOLD = 0.25
+TEXT_THRESHOLD = 0.35
 
 abs_errs = []
 sq_errs = []
