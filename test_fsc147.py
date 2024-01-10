@@ -42,7 +42,7 @@ else:
       class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"][4:])
 
 model = load_model(CONFIG_PATH, WEIGHTS_PATH)
-BOX_THRESHOLD = 0.1
+BOX_THRESHOLD = 0.2
 TEXT_THRESHOLD = 0.1
 
 abs_errs = []
