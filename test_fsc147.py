@@ -14,7 +14,7 @@ CLASS_NAME_PATH = "/scratch/shared/beegfs/nikian/FSC-147/ImageClasses_FSC147.txt
 FSC147_ANNO_FILE = "/scratch/shared/beegfs/nikian/FSC-147/annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
 DATA_SPLIT = "test"
-descriptions = "fsc147d"
+descriptions = "fsc147"
 
 with open(DATA_SPLIT_PATH) as f:
     data_split = json.load(f)
@@ -50,6 +50,7 @@ sq_errs = []
 im_sink = sv.utils.image.ImageSink(target_dir_path="/users/nikian/GroundingDINO")
 for img_name in image_names:
   image_source, image = load_image(IMG_DIR + "/" + img_name)
+  print(image.shape)
   gt = len(fsc147_annotations[img_name]["points"])
   caption = class_dict[img_name] 
   print("Caption: " + caption)
