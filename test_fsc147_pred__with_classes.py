@@ -6,7 +6,7 @@ import json
 import numpy as np
 from pluralizer import Pluralizer
 import cv2
-from inference import Model
+from util.inference import Model
 
 CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinT_OGC.py"
 WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
