@@ -1,4 +1,4 @@
-from groundingdino.util.inference import load_model, load_image, predict, annotate
+from groundingdino.util.inference import load_model, load_image, predict, annotate, Model
 
 import os
 import supervision as sv
@@ -6,7 +6,6 @@ import json
 import numpy as np
 from pluralizer import Pluralizer
 import cv2
-from util.inference import Model
 
 CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinT_OGC.py"
 WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
