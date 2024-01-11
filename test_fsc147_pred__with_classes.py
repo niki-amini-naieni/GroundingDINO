@@ -61,6 +61,7 @@ for img_name in image_names:
             text_threshold=TEXT_THRESHOLD
         )
   pred = len(list(filter(lambda x: x is not None and (x == 0), detections.class_id)))
+  pred = len(detections.class_id)
 
   abs_err = np.abs(pred - gt)
   abs_errs.append(abs_err)
