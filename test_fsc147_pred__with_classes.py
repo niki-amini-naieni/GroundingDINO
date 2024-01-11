@@ -15,7 +15,7 @@ IMG_DIR = "/scratch/shared/beegfs/nikian/FSC-147/images_384_VarV2"
 CLASS_NAME_PATH = "/scratch/shared/beegfs/nikian/FSC-147/ImageClasses_FSC147.txt"
 FSC147_ANNO_FILE = "/scratch/shared/beegfs/nikian/FSC-147/annotation_FSC147_384.json"
 FSC147_D_ANNO_FILE = "../CounTX-plusplus/FSC-147-D.json"
-DATA_SPLIT = "val"
+DATA_SPLIT = "test"
 descriptions = "fsc147"
 
 with open(DATA_SPLIT_PATH) as f:
@@ -55,24 +55,24 @@ im_sink = sv.utils.image.ImageSink(target_dir_path="/users/nikian/GroundingDINO"
 for img_name in image_names:
   image = cv2.imread(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
-  detections = model.predict_with_classes(
+  detections, labels = model.predict_with_classes(
             image=image,
             classes=[class_dict[img_name]],
             box_threshold=BOX_THRESHOLD,
             text_threshold=TEXT_THRESHOLD
         )
-  
-  print(detections.class_id)
   pred = len(list(filter(lambda x: x is not None and (x == 0), detections.class_id)))
 
-  print("Pred: " + str(pred))
-  print("GT: " + str(gt))
   abs_err = np.abs(pred - gt)
-  print("Abs Err: " + str(abs_err))
   abs_errs.append(abs_err)
   sq_errs.append(abs_err ** 2)
-  #annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)
-  #im_sink.save_image(annotated_frame, img_name)
+  if img_name == "5.jpg" or img_name == "287.jpg":
+    print("Pred: " + str(pred))
+    print("GT: " + str(gt))
+    print("Abs Err: " + str(abs_err))
+    box_annotator = sv.BoxAnnotator()
+    annotated_image = box_annotator.annotate(scene=image, detections=detections, labels=labels)
+    im_sink.save_image(annotated_image, img_name)
 
 abs_errs = np.array(abs_errs)
 sq_errs = np.array(sq_errs)
