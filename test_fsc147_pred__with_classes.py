@@ -45,8 +45,8 @@ else:
 
 classes = list(np.unique(list(class_dict.values())))
 
-BOX_THRESHOLD = 0.2
-TEXT_THRESHOLD = 0.2
+BOX_THRESHOLD = 0.1
+TEXT_THRESHOLD = 0.25
 model = Model(model_config_path=CONFIG_PATH, model_checkpoint_path=WEIGHTS_PATH)
 
 abs_errs = []
