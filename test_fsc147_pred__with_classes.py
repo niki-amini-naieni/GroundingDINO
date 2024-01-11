@@ -44,8 +44,8 @@ else:
 
 classes = list(np.unique(list(class_dict.values())))
 
-BOX_THRESHOLD = 0.25
-TEXT_THRESHOLD = 0.35
+BOX_THRESHOLD = 0.2
+TEXT_THRESHOLD = 0.2
 model = Model(model_config_path=CONFIG_PATH, model_checkpoint_path=WEIGHTS_PATH)
 
 abs_errs = []
@@ -56,7 +56,7 @@ for img_name in image_names:
   gt = len(fsc147_annotations[img_name]["points"])
   detections = model.predict_with_classes(
             image=image,
-            classes=[class_dict[img_name], 'cat', 'dog', 'tree', 'sun'],
+            classes=[class_dict[img_name]],
             box_threshold=BOX_THRESHOLD,
             text_threshold=TEXT_THRESHOLD
         )
