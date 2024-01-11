@@ -36,8 +36,8 @@ if descriptions == "fsc147":
       for line in f:
           key = line.split()[0]
           val = line.split()[1:]
-          #class_dict[key] = pluralizer.singular(' '.join(val))
-          class_dict[key] = ' '.join(val)
+          class_dict[key] = pluralizer.singular(' '.join(val))
+          #class_dict[key] = ' '.join(val)
 else:
    for img_name in image_names:
       class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"][4:])
