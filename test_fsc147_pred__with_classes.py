@@ -42,6 +42,8 @@ else:
    for img_name in image_names:
       class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"][4:])
 
+classes = np.unique(list(class_dict.values()))
+
 BOX_THRESHOLD = 0.25
 TEXT_THRESHOLD = 0.35
 model = Model(model_config_path=CONFIG_PATH, model_checkpoint_path=WEIGHTS_PATH)
@@ -52,7 +54,6 @@ im_sink = sv.utils.image.ImageSink(target_dir_path="/users/nikian/GroundingDINO"
 for img_name in image_names:
   image = cv2.imread(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
-  classes = [class_dict[img_name]] 
   detections = model.predict_with_classes(
             image=image,
             classes=classes,
@@ -61,7 +62,7 @@ for img_name in image_names:
         )
   
   print(detections.class_id)
-  pred = len(list(filter(lambda x: x is not None, detections.class_id)))
+  pred = len(list(filter(lambda x: classes[x] == class_dict[img_name], detections.class_id)))
 
   print("Pred: " + str(pred))
   print("GT: " + str(gt))
