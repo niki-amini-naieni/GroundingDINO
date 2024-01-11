@@ -9,7 +9,7 @@ import cv2
 
 CONFIG_PATH = "./groundingdino/config/GroundingDINO_SwinT_OGC.py"
 WEIGHTS_PATH = "../weights/groundingdino_swint_ogc.pth"
-WEIGHTS_PATH = "../weights/gdinot-coco-ft.pth"
+WEIGHTS_PATH = "../weights/gdinot-1.8m-odvg.pth"
 DATA_SPLIT_PATH = "/scratch/shared/beegfs/nikian/FSC-147/Train_Test_Val_FSC_147.json"
 IMG_DIR = "/scratch/shared/beegfs/nikian/FSC-147/images_384_VarV2"
 CLASS_NAME_PATH = "/scratch/shared/beegfs/nikian/FSC-147/ImageClasses_FSC147.txt"
@@ -45,8 +45,8 @@ else:
 
 classes = list(np.unique(list(class_dict.values())))
 
-BOX_THRESHOLD = 0.25
-TEXT_THRESHOLD = 0.35
+BOX_THRESHOLD = 0.1
+TEXT_THRESHOLD = 0.1
 model = Model(model_config_path=CONFIG_PATH, model_checkpoint_path=WEIGHTS_PATH)
 
 abs_errs = []
