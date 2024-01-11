@@ -56,13 +56,13 @@ for img_name in image_names:
   gt = len(fsc147_annotations[img_name]["points"])
   detections = model.predict_with_classes(
             image=image,
-            classes=classes,
+            classes=[class_dict[img_name], 'cat', 'dog', 'tree', 'sun'],
             box_threshold=BOX_THRESHOLD,
             text_threshold=TEXT_THRESHOLD
         )
   
   print(detections.class_id)
-  pred = len(list(filter(lambda x: x is not None and (classes[x] == class_dict[img_name]), detections.class_id)))
+  pred = len(list(filter(lambda x: x is not None and (x == 0), detections.class_id)))
 
   print("Pred: " + str(pred))
   print("GT: " + str(gt))
