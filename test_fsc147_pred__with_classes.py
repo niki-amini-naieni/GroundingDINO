@@ -55,7 +55,7 @@ im_sink = sv.utils.image.ImageSink(target_dir_path="/users/nikian/GroundingDINO"
 for img_name in image_names:
   image = cv2.imread(IMG_DIR + "/" + img_name)
   gt = len(fsc147_annotations[img_name]["points"])
-  detections, labels = model.predict_with_classes(
+  detections = model.predict_with_classes(
             image=image,
             classes=[class_dict[img_name]],
             box_threshold=BOX_THRESHOLD,
@@ -71,7 +71,7 @@ for img_name in image_names:
     print("GT: " + str(gt))
     print("Abs Err: " + str(abs_err))
     box_annotator = sv.BoxAnnotator()
-    annotated_image = box_annotator.annotate(scene=image, detections=detections, labels=labels)
+    annotated_image = box_annotator.annotate(scene=image, detections=detections)
     im_sink.save_image(annotated_image, img_name)
 
 abs_errs = np.array(abs_errs)
