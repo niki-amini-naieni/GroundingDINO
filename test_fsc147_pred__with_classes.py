@@ -42,7 +42,7 @@ else:
    for img_name in image_names:
       class_dict[img_name] = pluralizer.singular(fsc147_d_annotations[img_name]["text_description"][4:])
 
-classes = np.unique(list(class_dict.values()))
+classes = list(np.unique(list(class_dict.values())))
 
 BOX_THRESHOLD = 0.25
 TEXT_THRESHOLD = 0.35
