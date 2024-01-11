@@ -61,7 +61,7 @@ for img_name in image_names:
         )
   
   print(detections.class_id)
-  pred = detections.xyxy.shape[0]
+  pred = len(list(filter(lambda x: x is not None, detections.class_id)))
 
   print("Pred: " + str(pred))
   print("GT: " + str(gt))
