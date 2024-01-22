@@ -59,13 +59,9 @@ for img_name in image_names:
   abs_err = np.abs(pred - gt)
   abs_errs.append(abs_err)
   sq_errs.append(abs_err ** 2)
-  if img_name == "5.jpg" or img_name == "287.jpg":
-    print("Pred: " + str(pred))
-    print("GT: " + str(gt))
-    print("Abs Err: " + str(abs_err))
-    box_annotator = sv.BoxAnnotator()
-    annotated_image = box_annotator.annotate(scene=image, detections=detections)
-    im_sink.save_image(annotated_image, img_name)
+  print("Pred: " + str(pred))
+  print("GT: " + str(gt))
+  print("Abs Err: " + str(abs_err))
 
 abs_errs = np.array(abs_errs)
 sq_errs = np.array(sq_errs)
