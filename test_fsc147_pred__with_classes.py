@@ -53,6 +53,7 @@ for img_name in image_names:
             box_threshold=BOX_THRESHOLD,
             text_threshold=TEXT_THRESHOLD
         )
+  print(detections)
   pred = len(detections.class_id)
 
   abs_err = np.abs(pred - gt)
