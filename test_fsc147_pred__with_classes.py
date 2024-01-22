@@ -54,7 +54,7 @@ for img_name in image_names:
             text_threshold=TEXT_THRESHOLD
         )
   print(detections)
-  pred = len(detections.xyxy)
+  pred = len(detections[1])
 
   abs_err = np.abs(pred - gt)
   abs_errs.append(abs_err)
